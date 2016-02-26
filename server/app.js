@@ -22,12 +22,10 @@ router.use('/', express.static(path.join(__dirname, '../public')));
 //Testing controller
 var controllers = require('../controllers/index')();
 var wController = controllers.waves;
-//var data = wController.createGraphData();
 
 
 router.get('/api/graph/:amp', function(req, res){
-    console.log(req.params.amp)
-    res.send("OK");
+    res.send(wController.createGraphData(req.params.amp));
     //res.json(data);
 });
 
