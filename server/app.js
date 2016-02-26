@@ -3,6 +3,10 @@ var path = require('path');
 var express = require('express');
 var router = express();
 
+//For parsing post requests
+var bp = require('body-parser');
+router.use(bp.urlencoded({extended: false}));
+
 //Various other includes
 //Morgan: reports on calls made to server
 var morgan = require('morgan');
@@ -18,12 +22,13 @@ router.use('/', express.static(path.join(__dirname, '../public')));
 //Testing controller
 var controllers = require('../controllers/index')();
 var wController = controllers.waves;
-var data = wController.createGraphData();
+//var data = wController.createGraphData();
 
 
-router.get('api/graph', function(req, res){
-    
-    res.send('Hello!');
+router.get('/api/graph/:amp', function(req, res){
+    console.log(req.params.amp)
+    res.send("OK");
+    //res.json(data);
 });
 
 
@@ -42,4 +47,5 @@ router.get('api/graph', function(req, res){
 //Start er up
 router.listen(router.get('port'), function() {
    console.log('Wave Deconstruction server started: http://localhost:' + router.get('port') + '/');
+   console.log("Or.. https://wave-partial-deconstruction-patmulvihill.c9users.io");
 })

@@ -1,9 +1,9 @@
-/* global d3 *
+/* global d3 */
 
 
-/**
- * Begin graph output code
- **/
+
+
+    
 var time = 0.1;
 
 var margin = {
@@ -91,42 +91,46 @@ var line3 = d3.svg.line()
         return y(d.wave3);
     });
 
-
-
-var data; // a global
-
-
-// $.getJSON("/api/graph", function(data) {
+function generateGraph(){
     
-//     console.log(data);
-    
-    
-// });
+    console.log($('#amplitudeInput').val())
+//      $.ajax({
+// 	 	type: 'GET',
+// 	 	url: 'api/graph/' + $('#amplitudeInput').val(),
+// 	 	dataType: 'json',
+// 	 	async: true,
+// 	 	success: loadGraph
+// 	 });
+}
 
-d3.json("data.json", function(error, json) {
-    if (error) return console.log(error);
-    data = json;
+	 
+function loadGraph(json){
+    
+    console.log(json);
+    
+    // data = json;
 
-    //Actually draw the lines now
-    canvas.append("path")
-        .datum(data)
-        .attr("class", "line")
-        .attr("d", line1)
-        .attr("stroke-width", 1)
-        .attr("stroke", "green");
+    // //Actually draw the lines now
+    // canvas.append("path")
+    //     .datum(data)
+    //     .attr("class", "line")
+    //     .attr("d", line1)
+    //     .attr("stroke-width", 1)
+    //     .attr("stroke", "green");
         
-    canvas.append("path")
-        .datum(data)
-        .attr("class", "line")
-        .attr("d", line2)
-        .attr("stroke-width", 1)
-        .attr("stroke", "blue");
+    // canvas.append("path")
+    //     .datum(data)
+    //     .attr("class", "line")
+    //     .attr("d", line2)
+    //     .attr("stroke-width", 1)
+    //     .attr("stroke", "blue");
 
-    canvas.append("path")
-        .datum(data)
-        .attr("class", "line")
-        .attr("d", line3)
-        .attr("stroke-width", 1)
-        .attr("stroke", 'red');
+    // canvas.append("path")
+    //     .datum(data)
+    //     .attr("class", "line")
+    //     .attr("d", line3)
+    //     .attr("stroke-width", 1)
+    //     .attr("stroke", 'red');
+}
 
-});
+

@@ -1,10 +1,10 @@
 exports = module.exports = {};
 
 
-exports.createGraphData = function(){
+exports.createGraphData = function(amplitude){
 
-    var a1 = 3;
-    var a2 = 3;
+    var a1 = amplitude;
+    var a2 = amplitude;
 
     var phi1 = 0;
     var phi2 = 0;
