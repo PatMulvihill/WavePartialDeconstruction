@@ -22,6 +22,7 @@ function getGraphData() {
             shouldExit = true;
         }
     })
+    
     if (shouldExit) {
         return;
     }
