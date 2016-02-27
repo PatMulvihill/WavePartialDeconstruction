@@ -5,7 +5,7 @@ var router = express();
 
 //For parsing post requests
 var bp = require('body-parser');
-router.use(bp.urlencoded({extended: false}));
+router.use(bp.urlencoded({ extended: false }))
 
 //Various other includes
 //Morgan: reports on calls made to server
@@ -24,10 +24,15 @@ var controllers = require('../controllers/index')();
 var wController = controllers.waves;
 
 
-router.get('/api/graph/:amp', function(req, res){
-    res.send(wController.createGraphData(req.params.amp));
+router.get('/api/graph/:amp', function(req, res) {
+    //res.send(wController.createGraphData(req.params.amp));
     //res.json(data);
 });
+
+router.post('/api/graph/', function(req, res) {
+    console.log(req.body)
+    res.json(wController.createGraphData(req.body));
+})
 
 
 
@@ -44,6 +49,6 @@ router.get('/api/graph/:amp', function(req, res){
 
 //Start er up
 router.listen(router.get('port'), function() {
-   console.log('Wave Deconstruction server started: http://localhost:' + router.get('port') + '/');
-   console.log("Or.. https://wave-partial-deconstruction-patmulvihill.c9users.io");
+    console.log('Wave Deconstruction server started: http://localhost:' + router.get('port') + '/');
+    console.log("Or.. https://wave-partial-deconstruction-patmulvihill.c9users.io");
 })

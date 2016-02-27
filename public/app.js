@@ -2,24 +2,57 @@
 var app = app || {};
 
 
-function generateGraph() {
 
-    var amplitude = parseInt($('#amplitudeInput').val());
-    if (amplitude > 0) {
-        $.ajax({
-            type: 'GET',
-            url: 'api/graph/' + amplitude,
-            dataType: 'json',
-            async: true,
-            success: loadGraph
-        });
+
+function getGraphData() {
+
+    var formData = {
+        amp1: Number($('#amplitudeInput1').val()),
+        freq1: Number($('#frequencyInput1').val()),
+        phi1: 0,
+        amp2: Number($('#amplitudeInput2').val()),
+        freq2: Number($('#frequencyInput2').val()),
+        phi2: 0
     }
+    
+    var shouldExit = false;
+    _.mapObject(formData, function(val, key) {
+        if (_.isNaN(val)) {
+            console.log(key + " has an invalid value.");
+            shouldExit = true;
+        }
+    })
+    if (shouldExit) {
+        return;
+    }
+    
+    $.ajax({
+        type: "POST",
+        url: 'api/graph',
+        data: formData,
+        success: loadGraph,
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log("Error, status = " + textStatus + ", " +
+                "error thrown: " + errorThrown
+            );
+        },
+        dataType: 'json',
+        //contentType: 'application/json',
+    });
+
+    // $.ajax({
+    //     type: 'GET',
+    //     url: 'api/graph/' + amplitude,
+    //     dataType: 'json',
+    //     async: true,
+    //     success: loadGraph
+    // });
 
 }
 
 
 function loadGraph(json) {
-
+    console.log(json);
     var data = json;
     d3.selectAll("path.line").remove();
     //Actually draw the lines now

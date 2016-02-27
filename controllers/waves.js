@@ -1,24 +1,23 @@
 exports = module.exports = {};
 
 
-exports.createGraphData = function(amplitude){
+exports.createGraphData = function(d) {
+    //console.log(d);
+    var a1 = d.amp1;
+    var a2 = d.amp2;
 
-    var a1 = amplitude;
-    var a2 = amplitude;
+    var f1 = d.freq1;
+    var f2 = d.freq2;
 
-    var phi1 = 0;
-    var phi2 = 0;
-
-    var f1 = 100;
-    var f2 = 75;
-
-    var y1;
-    var y2;
-    var y3;
+    var phi1 = d.phi1;
+    var phi2 = d.phi2;
 
     var twopif1 = f1 * 2 * Math.PI;
     var twopif2 = f2 * 2 * Math.PI;
-
+    
+    var y1;
+    var y2;
+    var y3;
     var time = 0.1;
 
 
@@ -46,6 +45,6 @@ exports.createGraphData = function(amplitude){
         });
 
     }
-    
+
     return data;
 }
