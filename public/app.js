@@ -14,7 +14,7 @@ function getGraphData() {
         freq2: Number($('#frequencyInput2').val()),
         phi2: 0
     }
-    
+
     var shouldExit = false;
     _.mapObject(formData, function(val, key) {
         if (_.isNaN(val)) {
@@ -22,11 +22,10 @@ function getGraphData() {
             shouldExit = true;
         }
     })
-    
     if (shouldExit) {
         return;
     }
-    
+
     $.ajax({
         type: "POST",
         url: 'api/graph',
@@ -78,6 +77,15 @@ function loadGraph(json) {
         .attr("d", app.line3)
         .attr("stroke-width", 1)
         .attr("stroke", 'red');
+
+    // var legend = app.canvas.append("g")
+    //     .attr("class", "legend")
+    //     .attr("transform", "translate(50,30)")
+    //     .style("font-size", "12px")
+    //     .call(d3.legend);
+    // http://bl.ocks.org/ZJONSSON/3918369
+
+
 }
 
 
@@ -169,5 +177,4 @@ $(function() {
         .y(function(d) {
             return y(d.wave3);
         });
-
 })
