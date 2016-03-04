@@ -20,12 +20,16 @@
     "gulp-mocha": "^2.2.0",
     "gulp-watch": "^4.3.5",
     "mocha": "^2.4.5",
-    "nodemon": "^1.9.1"
+    "nodemon": "^1.9.1",
+    "webpack": "^1.12.14"
   },
   "dependencies": {
     "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.6",
+    "d3": "^3.5.16",
     "express": "^4.13.4",
     "gulp": "^3.9.1",
+    "jquery": "^2.2.1",
     "morgan": "^1.7.0",
     "underscore": "^1.8.3"
   }

@@ -25,20 +25,20 @@ function getGraphData() {
     if (shouldExit) {
         return;
     }
-
-    $.ajax({
-        type: "POST",
-        url: 'api/graph',
-        data: formData,
-        success: loadGraph,
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("Error, status = " + textStatus + ", " +
-                "error thrown: " + errorThrown
-            );
-        },
-        dataType: 'json',
-        //contentType: 'application/json',
-    });
+    c
+    // $.ajax({
+    //     type: "POST",
+    //     url: 'api/graph',
+    //     data: formData,
+    //     success: loadGraph,
+    //     error: function(jqXHR, textStatus, errorThrown) {
+    //         console.log("Error, status = " + textStatus + ", " +
+    //             "error thrown: " + errorThrown
+    //         );
+    //     },
+    //     dataType: 'json',
+    //     //contentType: 'application/json',
+    // });
 
     // $.ajax({
     //     type: 'GET',
