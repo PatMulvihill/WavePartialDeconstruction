@@ -14,6 +14,7 @@ exports.Wave = function(opt) {
     opt.amp2 = opt.amp2 || 5;
     opt.freq1 = opt.freq1 || 4;
     opt.freq2 = opt.freq2 || 5;
+    opt.interval = opt.interval || 0.02;
     this.data = opt;
 
 
@@ -26,7 +27,13 @@ exports.Wave = function(opt) {
         opt.amp2 = opt.amp2 || this.data.amp2;
         opt.freq1 = opt.freq1 || this.data.freq1;
         opt.freq2 = opt.freq2 || this.data.freq2;
+        opt.interval = opt.interval || this.data.interval;
         this.data = opt;
+    }
+    
+    this.calculateGraph = (time) => {
+        this.data.interval = time || this.data.interval;
+        
     }
 
 

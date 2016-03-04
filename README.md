@@ -20,3 +20,12 @@ http://localhost:PORT/
 ####Or.. serving from our favorite web IDE, Cloud 9!
 
 https://wave-partial-deconstruction-patmulvihill.c9users.io
+
+###Testing 
+
+To run the current suite of tests:
+
+`mocha test/*`
+
+To build new tests, naming convention is to add -spec to the end of the file name.
+

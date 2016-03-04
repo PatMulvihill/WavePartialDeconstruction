@@ -12,9 +12,15 @@ describe('Controllers/Wave.js', () => {
                 amp1: 3,
                 amp2: 5,
                 freq1: 4,
-                freq2: 5
+                freq2: 5,
+                interval: 0.02
             });
             expect(wave).to.have.any.keys('data');
+            expect(wave.data).to.have.any.keys('amp1');
+            expect(wave.data).to.have.any.keys('amp2');
+            expect(wave.data).to.have.any.keys('freq1');
+            expect(wave.data).to.have.any.keys('freq2');
+            expect(wave.data).to.have.any.keys('interval');
         })
         it('Should have sensible defaults', () => {
             var wave = new Wave();
@@ -22,7 +28,8 @@ describe('Controllers/Wave.js', () => {
                 amp1: 3,
                 amp2: 5,
                 freq1: 4,
-                freq2: 5
+                freq2: 5,
+                interval: 0.02
             }
             expect(wave.data).to.deep.equal(sensibleDefaults);
 
@@ -47,7 +54,12 @@ describe('Controllers/Wave.js', () => {
         
     })
     
-    describe('function: Update(opt)', () =>{
+    describe('function: update(opt)', () =>{
+        it('Should have an update member function', () => {
+            var wave = new Wave();
+            expect(wave.update).to.be.a('function');
+        })
+        
         it("Should update the waves data object", () => {
             
             var wave = new Wave();
@@ -67,16 +79,33 @@ describe('Controllers/Wave.js', () => {
             var updateData = {
                 amp1: 10,
                 freq1: 7,
+                interval: 0.05
             }
             var afterUpdateData = {
                 amp1: 10,
                 amp2: 5,
                 freq1: 7,
-                freq2: 5
+                freq2: 5,
+                interval: 0.05
             }
             wave.update(updateData);
             
             expect(wave.data).to.deep.equal(afterUpdateData);
+        })
+        
+    })
+    describe('function: calculateGraph(opt)', () =>{
+        it('Should have a calculateGraph member function', () => {
+            var wave = new Wave();
+            expect(wave.calculateGraph).to.be.a('function');
+        })
+        
+        it('Should update an interval data member', () => {
+            var wave = new Wave();
+            wave.calculateGraph(0.04);
+            expect(wave.data).to.have.any.keys('interval');
+            expect(wave.data.interval).to.equal(0.04);
+
         })
         
     })
