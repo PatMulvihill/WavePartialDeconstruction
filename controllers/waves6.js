@@ -54,7 +54,6 @@ exports.Wave = function(opt) {
             point.wave1 = this.data.amp1 * Math.cos((this.data.freq1 * 2 * Math.PI) * i + this.data.phi1);
             // calculates y2
             point.wave2 = this.data.amp2 * Math.cos((this.data.freq2 * 2 * Math.PI) * i + this.data.phi2);
-
             // calcualtes y3
             // this is the partially deconstructed wave
             point.wave3 = point.wave1 + point.wave2;

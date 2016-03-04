@@ -29,3 +29,9 @@ To run the current suite of tests:
 
 To build new tests, naming convention is to add -spec to the end of the file name.
 
+Use the default gulp task to automate running the tests while developing:
+
+`gulp`
+
+This will monitor for changes in the controllers/test folders and run tests when changed.
+
