@@ -26,8 +26,6 @@ exports.createGraphData = function(d) {
     for (i = 0; i < time; i += 0.0002) {
         // calculates y1
         y1 = a1 * Math.cos(twopif1 * i + phi1);
-        //wave1.push(y1, i);
-
         // calculates y2
         y2 = a2 * Math.cos(twopif2 * i + phi2);
 

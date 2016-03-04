@@ -50,5 +50,6 @@ router.post('/api/graph/', function(req, res) {
 //Start er up
 router.listen(router.get('port'), function() {
     console.log('Wave Deconstruction server started: http://localhost:' + router.get('port') + '/');
-    console.log("Or.. https://wave-partial-deconstruction-patmulvihill.c9users.io");
+    console.log("Or.. https://wave-partial-deconstruction-dskoda1.c9users.io");
+    console.log("Or, probably shouldve kept the name but.. \nhttp://wave-partials-render-fest-dskoda1.c9users.io/");
 })
