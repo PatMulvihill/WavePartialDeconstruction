@@ -5,7 +5,9 @@ var router = express();
 
 //For parsing post requests
 var bp = require('body-parser');
-router.use(bp.urlencoded({ extended: false }))
+router.use(bp.urlencoded({
+    extended: false
+}))
 
 //Various other includes
 //Morgan: reports on calls made to server
@@ -21,18 +23,19 @@ router.use('/', express.static(path.join(__dirname, '../public')));
 
 //Testing controller
 var controllers = require('../controllers/index')();
-var wController = controllers.waves;
+var Wave = controllers.waves6.Wave;
 
-
-router.get('/api/graph/:amp', function(req, res) {
-    //res.send(wController.createGraphData(req.params.amp));
-    //res.json(data);
-});
 
 router.post('/api/graph/', function(req, res) {
-    console.log(req.body)
-    res.json(wController.createGraphData(req.body));
+    var wave = new Wave(req.body);
+    console.log(wave.data);
+    var ret = wave.calculateGraph({
+        time: 0.1
+    });
+    res.json(ret);
 })
+
+
 
 
 

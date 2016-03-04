@@ -51,13 +51,13 @@ exports.Wave = function(opt) {
         for (var i = 0; i < this.data.time; i += this.data.interval) {
             var point = {};
             // calculates y1
-            point.y1 = this.data.amp1 * Math.cos((this.data.freq1 * 2 * Math.PI) * i + this.data.phi1);
+            point.wave1 = this.data.amp1 * Math.cos((this.data.freq1 * 2 * Math.PI) * i + this.data.phi1);
             // calculates y2
-            point.y2 = this.data.amp2 * Math.cos((this.data.freq2 * 2 * Math.PI) * i + this.data.phi2);
+            point.wave2 = this.data.amp2 * Math.cos((this.data.freq2 * 2 * Math.PI) * i + this.data.phi2);
 
             // calcualtes y3
             // this is the partially deconstructed wave
-            point.y3 = point.y1 + point.y2;
+            point.wave3 = point.wave1 + point.wave2;
             point.time = i;
             waveData.push(point);
         }

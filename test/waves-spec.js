@@ -202,11 +202,10 @@ describe('Controllers/Wave.js', () => {
                 time: 0.03,
                 interval: 0.0002
             });
-            console.log(ret);
             _.each(ret, (obj) => {
-                expect(obj).to.have.any.keys('y1');
-                expect(obj).to.have.any.keys('y2');
-                expect(obj).to.have.any.keys('y3');
+                expect(obj).to.have.any.keys('wave1');
+                expect(obj).to.have.any.keys('wave2');
+                expect(obj).to.have.any.keys('wave2');
                 expect(obj).to.have.any.keys('time');
             })
         })
