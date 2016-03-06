@@ -46,11 +46,11 @@
 
 	var controllers = __webpack_require__(1)();
 	var graph = __webpack_require__(4)
-	//We dont even need the require d3/jquery I think.
+	    //We dont even need the require d3/jquery I think.
 	var d3 = __webpack_require__(6);
 	var $ = __webpack_require__(5);
 
-	$(function(){
+	$(function() {
 	    var time = 0.1;
 	    var app = app || {};
 	    var margin = {
@@ -137,18 +137,23 @@
 	        .y(function(d) {
 	            return y(d.wave3);
 	        });
-	        
-	        
-	        $( "#generateGraphBtn" ).bind( "click", function(e) {
-	            e.preventDefault();
-	            var formData = app.getGraphData();
-	            //Call the controllers function in here
-	            //Then pass the data to load graph
-	            
-	            //app.loadGraph(data, app)
-	            
-	});
-	        
+
+
+	    $("#generateGraphBtn").bind("click", function(e) {
+	        e.preventDefault();
+	        var formData = graph.getGraphData();
+	        var wave = controllers.waves6.Wave(formData)
+	        var json = wave.calculateGraph({
+	            time: 0.1
+	        });
+	        console.log(json);
+	        //Call the controllers function in here
+	        //Then pass the data to load graph
+
+	        graph.loadGraph(json, app)
+
+	    });
+
 	})
 
 /***/ },

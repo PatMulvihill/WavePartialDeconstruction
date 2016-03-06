@@ -1,10 +1,10 @@
 var controllers = require('../controllers/index')();
 var graph = require('./graph')
-//We dont even need the require d3/jquery I think.
+    //We dont even need the require d3/jquery I think.
 var d3 = require('d3');
 var $ = require('jquery');
 
-$(function(){
+$(function() {
     var time = 0.1;
     var app = app || {};
     var margin = {
@@ -91,16 +91,21 @@ $(function(){
         .y(function(d) {
             return y(d.wave3);
         });
-        
-        
-        $( "#generateGraphBtn" ).bind( "click", function(e) {
-            e.preventDefault();
-            var formData = app.getGraphData();
-            //Call the controllers function in here
-            //Then pass the data to load graph
-            
-            //app.loadGraph(data, app)
-            
-});
-        
+
+
+    $("#generateGraphBtn").bind("click", function(e) {
+        e.preventDefault();
+        var formData = graph.getGraphData();
+        var wave = controllers.waves6.Wave(formData)
+        var json = wave.calculateGraph({
+            time: 0.1
+        });
+        console.log(json);
+        //Call the controllers function in here
+        //Then pass the data to load graph
+
+        graph.loadGraph(json, app)
+
+    });
+
 })
