@@ -53,6 +53,7 @@
 	$(function() {
 	    var time = 0.1;
 	    var app = app || {};
+	    var g1 = {};
 	    var margin = {
 	            top: 20,
 	            right: 30,
@@ -82,21 +83,21 @@
 	        .orient("left");
 
 	    //Div for graph
-	    app.canvas = d3.select("body").append("svg")
+	    g1.canvas = d3.select("body").append("svg")
 	        .attr("width", width + margin.left + margin.right)
 	        .attr("height", height + margin.top + margin.bottom)
 	        .append("g")
 	        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	    //X-axis
-	    app.canvas.append("text")
+	    g1.canvas.append("text")
 	        .attr("class", "x label")
 	        .attr("text-anchor", "end")
 	        .attr("x", width)
 	        .attr("y", height - 6)
 	        .text("time (s)");
 	    //Y-axis
-	    app.canvas.append("text")
+	    g1.canvas.append("text")
 	        .attr("class", "y label")
 	        .attr("text-anchor", "end")
 	        .attr("y", 6)
@@ -105,16 +106,16 @@
 	        .text("amplitude (m)");
 
 	    // draw x axis
-	    app.canvas.append("g")
+	    g1.canvas.append("g")
 	        .attr("transform", "translate(0, 215)")
 	        .call(xAxis);
 
 	    // draw y axis
-	    app.canvas.append("g")
+	    g1.canvas.append("g")
 	        .call(yAxis);
 
 	    //Draw the lines below
-	    app.line1 = d3.svg.line()
+	    g1.line1 = d3.svg.line()
 	        .x(function(d) {
 	            return x(d.time);
 	        })
@@ -122,7 +123,7 @@
 	            return y(d.wave1);
 	        });
 
-	    app.line2 = d3.svg.line()
+	    g1.line2 = d3.svg.line()
 	        .x(function(d) {
 	            return x(d.time);
 	        })
@@ -130,7 +131,7 @@
 	            return y(d.wave2);
 	        });
 
-	    app.line3 = d3.svg.line()
+	    g1.line3 = d3.svg.line()
 	        .x(function(d) {
 	            return x(d.time);
 	        })
@@ -150,11 +151,12 @@
 	        //Call the controllers function in here
 	        //Then pass the data to load graph
 
-	        graph.loadGraph(json, app)
+	        graph.loadGraph(json, g1)
 
 	    });
 
 	})
+
 
 /***/ },
 /* 1 */
@@ -266,13 +268,12 @@
 	        if (!opt.time) {
 	            throw Error('Not passed a time length to calculate graph for. Exiting.');
 	        }
-
 	        this.data.time = opt.time || this.data.time;
 	        this.data.interval = opt.interval || this.data.interval;
 	        if(this.data.interval < 0){
 	            throw RangeError('Interval in calculateGraph must be non-negative. Exiting.');
 	        }
-	        
+
 	        if(this.data.time < this.data.interval){
 	            return [];
 	        }
@@ -290,7 +291,7 @@
 	            point.time = i;
 	            waveData.push(point);
 	        }
-	        
+
 	        return waveData;
 	    }
 
@@ -331,32 +332,33 @@
 	    return formData;
 	}
 
-	exports.loadGraph = function(json, app) {
+	exports.loadGraph = function(json, graphDiv) {
 	    var data = json;
 	    d3.selectAll("path.line").remove();
 	    //Actually draw the lines now
-	    app.canvas.append("path")
+	    graphDiv.canvas.append("path")
 	        .datum(data)
 	        .attr("class", "line")
-	        .attr("d", app.line1)
+	        .attr("d", graphDiv.line1)
 	        .attr("id", "line1")
 	        .attr("stroke-width", 1)
 	        .attr("stroke", "green");
 
-	    app.canvas.append("path")
+	    graphDiv.canvas.append("path")
 	        .datum(data)
 	        .attr("class", "line")
-	        .attr("d", app.line2)
+	        .attr("d", graphDiv.line2)
 	        .attr("stroke-width", 1)
 	        .attr("stroke", "blue");
 
-	    app.canvas.append("path")
+	    graphDiv.canvas.append("path")
 	        .datum(data)
 	        .attr("class", "line")
-	        .attr("d", app.line3)
+	        .attr("d", graphDiv.line3)
 	        .attr("stroke-width", 1)
 	        .attr("stroke", 'red');
 	}
+
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },

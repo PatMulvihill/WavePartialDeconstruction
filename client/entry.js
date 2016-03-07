@@ -7,6 +7,7 @@ var $ = require('jquery');
 $(function() {
     var time = 0.1;
     var app = app || {};
+    var g1 = {};
     var margin = {
             top: 20,
             right: 30,
@@ -36,21 +37,21 @@ $(function() {
         .orient("left");
 
     //Div for graph
-    app.canvas = d3.select("body").append("svg")
+    g1.canvas = d3.select("body").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     //X-axis
-    app.canvas.append("text")
+    g1.canvas.append("text")
         .attr("class", "x label")
         .attr("text-anchor", "end")
         .attr("x", width)
         .attr("y", height - 6)
         .text("time (s)");
     //Y-axis
-    app.canvas.append("text")
+    g1.canvas.append("text")
         .attr("class", "y label")
         .attr("text-anchor", "end")
         .attr("y", 6)
@@ -59,16 +60,16 @@ $(function() {
         .text("amplitude (m)");
 
     // draw x axis
-    app.canvas.append("g")
+    g1.canvas.append("g")
         .attr("transform", "translate(0, 215)")
         .call(xAxis);
 
     // draw y axis
-    app.canvas.append("g")
+    g1.canvas.append("g")
         .call(yAxis);
 
     //Draw the lines below
-    app.line1 = d3.svg.line()
+    g1.line1 = d3.svg.line()
         .x(function(d) {
             return x(d.time);
         })
@@ -76,7 +77,7 @@ $(function() {
             return y(d.wave1);
         });
 
-    app.line2 = d3.svg.line()
+    g1.line2 = d3.svg.line()
         .x(function(d) {
             return x(d.time);
         })
@@ -84,7 +85,7 @@ $(function() {
             return y(d.wave2);
         });
 
-    app.line3 = d3.svg.line()
+    g1.line3 = d3.svg.line()
         .x(function(d) {
             return x(d.time);
         })
@@ -104,7 +105,7 @@ $(function() {
         //Call the controllers function in here
         //Then pass the data to load graph
 
-        graph.loadGraph(json, app)
+        graph.loadGraph(json, g1)
 
     });
 

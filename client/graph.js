@@ -25,29 +25,29 @@ exports.getGraphData = function() {
     return formData;
 }
 
-exports.loadGraph = function(json, app) {
+exports.loadGraph = function(json, graphDiv) {
     var data = json;
     d3.selectAll("path.line").remove();
     //Actually draw the lines now
-    app.canvas.append("path")
+    graphDiv.canvas.append("path")
         .datum(data)
         .attr("class", "line")
-        .attr("d", app.line1)
+        .attr("d", graphDiv.line1)
         .attr("id", "line1")
         .attr("stroke-width", 1)
         .attr("stroke", "green");
 
-    app.canvas.append("path")
+    graphDiv.canvas.append("path")
         .datum(data)
         .attr("class", "line")
-        .attr("d", app.line2)
+        .attr("d", graphDiv.line2)
         .attr("stroke-width", 1)
         .attr("stroke", "blue");
 
-    app.canvas.append("path")
+    graphDiv.canvas.append("path")
         .datum(data)
         .attr("class", "line")
-        .attr("d", app.line3)
+        .attr("d", graphDiv.line3)
         .attr("stroke-width", 1)
         .attr("stroke", 'red');
 }

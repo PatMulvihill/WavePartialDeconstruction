@@ -36,13 +36,12 @@ exports.Wave = function(opt) {
         if (!opt.time) {
             throw Error('Not passed a time length to calculate graph for. Exiting.');
         }
-
         this.data.time = opt.time || this.data.time;
         this.data.interval = opt.interval || this.data.interval;
         if(this.data.interval < 0){
             throw RangeError('Interval in calculateGraph must be non-negative. Exiting.');
         }
-        
+
         if(this.data.time < this.data.interval){
             return [];
         }
@@ -60,7 +59,7 @@ exports.Wave = function(opt) {
             point.time = i;
             waveData.push(point);
         }
-        
+
         return waveData;
     }
 
