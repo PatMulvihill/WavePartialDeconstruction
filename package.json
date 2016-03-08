@@ -4,7 +4,6 @@
   "description": "",
   "main": "server/app.js",
   "scripts": {
-    "pack": "gulp webpackClient",
     "start": "nodemon --watch controllers --watch server server/app.js",
     "test": "gulp runTests"
   },

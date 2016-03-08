@@ -13,7 +13,7 @@ First make sure everything is installed correctly:
 
 Then these commands will pack the latest client code and start the server:
 
-`npm pack`
+`gulp webpackClient`
 
 `npm start`
 
