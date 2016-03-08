@@ -1,14 +1,19 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React = require('react');
-module.exports = React.createClass({
+let React = require('react');
+
+class InputField extends React.Component{
+  constructor(){
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   handleChange(e) {
     e.preventDefault();
     var text = e.target.value;
     this.props.onChange(this.props.field.key, text);
-  },
-
+  }
   render() {
     return (
 
@@ -22,5 +27,13 @@ module.exports = React.createClass({
 
     );
   }
+}
 
-});
+InputField.propTypes = {
+  key: React.PropTypes.string,
+  onChange: React.PropTypes.func.isRequired,
+  value: React.PropTypes.string,
+  field: React.PropTypes.object.isRequired
+};
+
+module.exports = InputField;

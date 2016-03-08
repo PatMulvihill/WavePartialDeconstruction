@@ -46,10 +46,12 @@
 
 	/** @jsx React.DOM *//** @jsx React.DOM */
 	'use strict';
-	var React = __webpack_require__(1);
-	var reactDOM = __webpack_require__(158);
+	let React = __webpack_require__(1);
+	let reactDOM = __webpack_require__(158);
 
 	var Graph = __webpack_require__(159);
+
+	//Render our top level component here
 	reactDOM.render(
 	  React.createElement(Graph, null),
 	  document.getElementById('content')
@@ -19666,8 +19668,10 @@
 
 	let InputForm = __webpack_require__(160);
 	let React = __webpack_require__(1);
-	module.exports = React.createClass({displayName: "module.exports",
-	  render:function() {
+
+	var ____Classu=React.Component;for(var ____Classu____Key in ____Classu){if(____Classu.hasOwnProperty(____Classu____Key)){Graph[____Classu____Key]=____Classu[____Classu____Key];}}var ____SuperProtoOf____Classu=____Classu===null?null:____Classu.prototype;Graph.prototype=Object.create(____SuperProtoOf____Classu);Graph.prototype.constructor=Graph;Graph.__superConstructor__=____Classu;function Graph(){if(____Classu!==null){____Classu.apply(this,arguments);}}
+
+	  Object.defineProperty(Graph.prototype,"render",{writable:true,configurable:true,value:function() {
 	    var fields = [
 	      {
 	        key: 'amp1',
@@ -19690,8 +19694,10 @@
 	    return (
 	      React.createElement(InputForm, {fields: fields})
 	    );
-	  }
-	});
+	  }});
+
+
+	module.exports = Graph;
 
 
 /***/ },
@@ -19701,23 +19707,26 @@
 	/** @jsx React.DOM *//** @jsx React.DOM */
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var LinkedState = __webpack_require__(161);
-	var InputField = __webpack_require__(165);
-	module.exports = React.createClass({displayName: "module.exports",
-	  mixins: [LinkedState],
+	let React = __webpack_require__(1);
+	//var LinkedState = require('react-addons-linked-state-mixin');
+	let InputField = __webpack_require__(161);
 
-	  getInitialState:function() {
-	    return {};
-	  },
-	  handleFieldChange:function(fieldId, value) {
+	var ____Classv=React.Component;for(var ____Classv____Key in ____Classv){if(____Classv.hasOwnProperty(____Classv____Key)){InputForm[____Classv____Key]=____Classv[____Classv____Key];}}var ____SuperProtoOf____Classv=____Classv===null?null:____Classv.prototype;InputForm.prototype=Object.create(____SuperProtoOf____Classv);InputForm.prototype.constructor=InputForm;InputForm.__superConstructor__=____Classv;
+
+	  function InputForm(){
+	    ____Classv.call(this);
+	    this.handleFieldChange = this.handleFieldChange.bind(this);
+	    this.state = {};
+	  }
+
+	  Object.defineProperty(InputForm.prototype,"handleFieldChange",{writable:true,configurable:true,value:function(fieldId, value) {
 	    var newState = {};
 	    newState[fieldId] = value;
 
 	    this.setState(newState);
-	  },
+	  }});
 
-	  render:function() {
+	  Object.defineProperty(InputForm.prototype,"render",{writable:true,configurable:true,value:function() {
 	    var fields = this.props.fields.map(function(field) {
 
 	      var props = {
@@ -19738,256 +19747,81 @@
 	        JSON.stringify(this.state), 
 	      " "), " ")
 	    );
-	  }
-	});
+	  }});
+
+
+
+
+	InputForm.propTypes = {
+	  fields: React.PropTypes.arrayOf(
+	    React.PropTypes.shape({
+	    key: React.PropTypes.string.isRequired,
+	    name: React.PropTypes.string.isRequired
+	  }))
+	};
+
+	module.exports = InputForm;
+
+
+	// module.exports = React.createClass({
+	//   mixins: [LinkedState],
+	//
+	//   getInitialState() {
+	//     return {};
+	//   },
+	//   handleFieldChange(fieldId, value) {
+	//     var newState = {};
+	//     newState[fieldId] = value;
+	//
+	//     this.setState(newState);
+	//   },
+	//
+	//   render() {
+	//     var fields = this.props.fields.map(function(field) {
+	//
+	//       var props = {
+	//         key: field.key,
+	//         onChange: this.handleFieldChange,
+	//         value: this.state[field.key],
+	//         field: field
+	//       };
+	//       return <InputField {...props}/>;
+	//     }, this);
+	//
+	//
+	//     return (
+	//
+	//       < form className = "form-horizontal" > {
+	//         fields
+	//       } < div > {
+	//         JSON.stringify(this.state)
+	//       } < /div> < /form>
+	//     );
+	//   }
+	// });
 
 
 /***/ },
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(162);
-
-/***/ },
-/* 162 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule LinkedStateMixin
-	 * @typechecks static-only
-	 */
-
-	'use strict';
-
-	var ReactLink = __webpack_require__(163);
-	var ReactStateSetters = __webpack_require__(164);
-
-	/**
-	 * A simple mixin around ReactLink.forState().
-	 */
-	var LinkedStateMixin = {
-	  /**
-	   * Create a ReactLink that's linked to part of this component's state. The
-	   * ReactLink will have the current value of this.state[key] and will call
-	   * setState() when a change is requested.
-	   *
-	   * @param {string} key state key to update. Note: you may want to use keyOf()
-	   * if you're using Google Closure Compiler advanced mode.
-	   * @return {ReactLink} ReactLink instance linking to the state.
-	   */
-	  linkState: function (key) {
-	    return new ReactLink(this.state[key], ReactStateSetters.createStateKeySetter(this, key));
-	  }
-	};
-
-	module.exports = LinkedStateMixin;
-
-/***/ },
-/* 163 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule ReactLink
-	 * @typechecks static-only
-	 */
-
-	'use strict';
-
-	/**
-	 * ReactLink encapsulates a common pattern in which a component wants to modify
-	 * a prop received from its parent. ReactLink allows the parent to pass down a
-	 * value coupled with a callback that, when invoked, expresses an intent to
-	 * modify that value. For example:
-	 *
-	 * React.createClass({
-	 *   getInitialState: function() {
-	 *     return {value: ''};
-	 *   },
-	 *   render: function() {
-	 *     var valueLink = new ReactLink(this.state.value, this._handleValueChange);
-	 *     return <input valueLink={valueLink} />;
-	 *   },
-	 *   _handleValueChange: function(newValue) {
-	 *     this.setState({value: newValue});
-	 *   }
-	 * });
-	 *
-	 * We have provided some sugary mixins to make the creation and
-	 * consumption of ReactLink easier; see LinkedValueUtils and LinkedStateMixin.
-	 */
-
-	var React = __webpack_require__(2);
-
-	/**
-	 * @param {*} value current value of the link
-	 * @param {function} requestChange callback to request a change
-	 */
-	function ReactLink(value, requestChange) {
-	  this.value = value;
-	  this.requestChange = requestChange;
-	}
-
-	/**
-	 * Creates a PropType that enforces the ReactLink API and optionally checks the
-	 * type of the value being passed inside the link. Example:
-	 *
-	 * MyComponent.propTypes = {
-	 *   tabIndexLink: ReactLink.PropTypes.link(React.PropTypes.number)
-	 * }
-	 */
-	function createLinkTypeChecker(linkType) {
-	  var shapes = {
-	    value: typeof linkType === 'undefined' ? React.PropTypes.any.isRequired : linkType.isRequired,
-	    requestChange: React.PropTypes.func.isRequired
-	  };
-	  return React.PropTypes.shape(shapes);
-	}
-
-	ReactLink.PropTypes = {
-	  link: createLinkTypeChecker
-	};
-
-	module.exports = ReactLink;
-
-/***/ },
-/* 164 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule ReactStateSetters
-	 */
-
-	'use strict';
-
-	var ReactStateSetters = {
-	  /**
-	   * Returns a function that calls the provided function, and uses the result
-	   * of that to set the component's state.
-	   *
-	   * @param {ReactCompositeComponent} component
-	   * @param {function} funcReturningState Returned callback uses this to
-	   *                                      determine how to update state.
-	   * @return {function} callback that when invoked uses funcReturningState to
-	   *                    determined the object literal to setState.
-	   */
-	  createStateSetter: function (component, funcReturningState) {
-	    return function (a, b, c, d, e, f) {
-	      var partialState = funcReturningState.call(component, a, b, c, d, e, f);
-	      if (partialState) {
-	        component.setState(partialState);
-	      }
-	    };
-	  },
-
-	  /**
-	   * Returns a single-argument callback that can be used to update a single
-	   * key in the component's state.
-	   *
-	   * Note: this is memoized function, which makes it inexpensive to call.
-	   *
-	   * @param {ReactCompositeComponent} component
-	   * @param {string} key The key in the state that you should update.
-	   * @return {function} callback of 1 argument which calls setState() with
-	   *                    the provided keyName and callback argument.
-	   */
-	  createStateKeySetter: function (component, key) {
-	    // Memoize the setters.
-	    var cache = component.__keySetters || (component.__keySetters = {});
-	    return cache[key] || (cache[key] = createStateKeySetter(component, key));
-	  }
-	};
-
-	function createStateKeySetter(component, key) {
-	  // Partial state is allocated outside of the function closure so it can be
-	  // reused with every call, avoiding memory allocation when this function
-	  // is called.
-	  var partialState = {};
-	  return function stateKeySetter(value) {
-	    partialState[key] = value;
-	    component.setState(partialState);
-	  };
-	}
-
-	ReactStateSetters.Mixin = {
-	  /**
-	   * Returns a function that calls the provided function, and uses the result
-	   * of that to set the component's state.
-	   *
-	   * For example, these statements are equivalent:
-	   *
-	   *   this.setState({x: 1});
-	   *   this.createStateSetter(function(xValue) {
-	   *     return {x: xValue};
-	   *   })(1);
-	   *
-	   * @param {function} funcReturningState Returned callback uses this to
-	   *                                      determine how to update state.
-	   * @return {function} callback that when invoked uses funcReturningState to
-	   *                    determined the object literal to setState.
-	   */
-	  createStateSetter: function (funcReturningState) {
-	    return ReactStateSetters.createStateSetter(this, funcReturningState);
-	  },
-
-	  /**
-	   * Returns a single-argument callback that can be used to update a single
-	   * key in the component's state.
-	   *
-	   * For example, these statements are equivalent:
-	   *
-	   *   this.setState({x: 1});
-	   *   this.createStateKeySetter('x')(1);
-	   *
-	   * Note: this is memoized function, which makes it inexpensive to call.
-	   *
-	   * @param {string} key The key in the state that you should update.
-	   * @return {function} callback of 1 argument which calls setState() with
-	   *                    the provided keyName and callback argument.
-	   */
-	  createStateKeySetter: function (key) {
-	    return ReactStateSetters.createStateKeySetter(this, key);
-	  }
-	};
-
-	module.exports = ReactStateSetters;
-
-/***/ },
-/* 165 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/** @jsx React.DOM *//** @jsx React.DOM */
 	'use strict';
 
-	var React = __webpack_require__(1);
-	module.exports = React.createClass({displayName: "module.exports",
-	  handleChange:function(e) {
+	let React = __webpack_require__(1);
+
+	var ____Classw=React.Component;for(var ____Classw____Key in ____Classw){if(____Classw.hasOwnProperty(____Classw____Key)){InputField[____Classw____Key]=____Classw[____Classw____Key];}}var ____SuperProtoOf____Classw=____Classw===null?null:____Classw.prototype;InputField.prototype=Object.create(____SuperProtoOf____Classw);InputField.prototype.constructor=InputField;InputField.__superConstructor__=____Classw;
+	  function InputField(){
+	    ____Classw.call(this);
+	    this.handleChange = this.handleChange.bind(this);
+	  }
+
+	  Object.defineProperty(InputField.prototype,"handleChange",{writable:true,configurable:true,value:function(e) {
 	    e.preventDefault();
 	    var text = e.target.value;
 	    this.props.onChange(this.props.field.key, text);
-	  },
-
-	  render:function() {
+	  }});
+	  Object.defineProperty(InputField.prototype,"render",{writable:true,configurable:true,value:function() {
 	    return (
 
 	      React.createElement("div", {className: "form-group"}, 
@@ -19999,9 +19833,17 @@
 
 
 	    );
-	  }
+	  }});
 
-	});
+
+	InputField.propTypes = {
+	  key: React.PropTypes.string,
+	  onChange: React.PropTypes.func.isRequired,
+	  value: React.PropTypes.string,
+	  field: React.PropTypes.object.isRequired
+	};
+
+	module.exports = InputField;
 
 
 /***/ }

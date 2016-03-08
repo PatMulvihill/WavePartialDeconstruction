@@ -3,7 +3,9 @@
 
 let InputForm = require('./InputForm');
 let React = require('react');
-module.exports = React.createClass({
+
+class Graph extends React.Component{
+
   render() {
     var fields = [
       {
@@ -28,4 +30,6 @@ module.exports = React.createClass({
       <InputForm fields={fields} />
     );
   }
-});
+}
+
+module.exports = Graph;
