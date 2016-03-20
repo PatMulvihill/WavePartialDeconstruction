@@ -1,37 +1,50 @@
-# Wave Partial Deconstruction 
+# Wave Partial Deconstruction
 
 ###Summary:
 
-This app renders different graphs based on JSON data from the server.
+This app renders graphs based on user input.
+
 
 ###To run:
 
-npm start
+First make sure everything is installed correctly:
 
+`npm install`
 
-####Location of website:
+Then these commands will pack the latest client code and start the server:
+
+`gulp webpackClient`
+
+`npm start`
 
 If serving from your local machine, it will be at the usual:
 
-http://localhost:PORT/
+http://localhost:3000/
 
-(Port defaults to 3000 if process.env.PORT not set)
+#####Or.. serving from our favorite web IDE, Cloud 9!
 
-####Or.. serving from our favorite web IDE, Cloud 9!
+https://workspace_name.c9users.io
 
-https://wave-partial-deconstruction-patmulvihill.c9users.io
 
-###Testing 
+###Testing
 
-To run the current suite of tests:
+To run the current suite of tests just run:
 
-`mocha test/*`
+`npm test`
 
-To build new tests, naming convention is to add -spec to the end of the file name.
+See the style guide below about adding tests.
 
-Use the default gulp task to automate running the tests while developing:
 
-`gulp`
+###Webpack(ing!)
 
-This will monitor for changes in the controllers/test folders and run tests when changed.
+There are a bunch of gulp tasks configured to make developing React out of the client directory easy. These
 
+* `gulp lintClient`: will run the client code through ES Lint.
+
+* `gulp webpackClient`: will package the client code and place it into `public/bundle.js`.
+
+* `gulp client`: (recommended) use this to watch for changes and run the above tasks when they occur!
+
+
+###Style Guide
+To build new tests, naming convention is to add -spec to the end of the file name. Use `gulp watchForTests` to automate the running of tests whenever a file changes in the test or controllers directories.

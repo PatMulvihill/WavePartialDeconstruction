@@ -1,23 +1,33 @@
 var webpack = require('webpack');
 module.exports = {
-    entry: "./client/entry.js",
-    output: {
-        path: __dirname,
-        filename: "./public/bundle.js"
+  entry: "./client/index.jsx",
+  output: {
+    path: __dirname,
+    filename: "bundle.js"
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  module: {
+    loaders: [{
+      test: /\.css$/,
+      loader: "style!css"
     },
-    module: {
-        loaders: [{
-            test: /\.css$/,
-            loader: "style!css"
-        }]
-    },
-    plugins: [
-        //This injects the following modules into the 
-        //global namespace
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            d3: "d3",
-            _: "underscore"
-        })
-    ]
+    {
+      //tell webpack to use jsx-loader for all *.jsx files
+      test: /\.jsx$/,
+      loader: 'jsx-loader?insertPragma=React.DOM&harmony'
+    }
+  ]
+},
+plugins: [
+  //This injects the following modules into the
+  //global namespace
+  new webpack.ProvidePlugin({
+    $: "jquery",
+    d3: "d3",
+    _: "underscore",
+    react: 'react'
+  })
+]
 };
