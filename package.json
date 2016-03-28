@@ -4,8 +4,8 @@
   "description": "",
   "main": "server/app.js",
   "scripts": {
-    "start": "nodemon --watch controllers --watch server server/app.js",
-    "test": "gulp runTests"
+    "start": "nodemon --watch controllers --watch server server/app.js --watch public",
+    "test": "gulp testControllers"
   },
   "authors": [
     "dskoda1",

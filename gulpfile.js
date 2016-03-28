@@ -19,21 +19,41 @@ gulp.task('webpackClient', () => {
 });
 
 gulp.task('client', () => {
-  gulp.watch('client/**',
-    ['lintClient',
-    'webpackClient']);
+  gulp.watch('client/**', ['lintClient',
+    'webpackClient'
+  ]);
 });
 
-gulp.task('runTests', () => {
-  return gulp.src('test/*', {read: true})
-        // gulp-mocha needs filepaths so you can't have any plugins before it
-        .pipe(mocha({reporter: 'nyan'}));
+gulp.task('testControllers', () => {
+  return gulp.src('test/*', {
+      read: true
+    })
+    // gulp-mocha needs filepaths so you can't have any plugins before it
+    .pipe(mocha({
+      reporter: 'nyan'
+    }));
 })
 
-gulp.task('watchForTests', () => {
+gulp.task('lintControllers', () => {
+  return gulp.src(['./controllers/**',
+      '!node_modules/**'
+    ])
+    .pipe(eslint(require('./.eslintrc.json')))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+}) 
+gulp.task('lintTests', () => {
+  return gulp.src(['./test/**',
+      '!node_modules/**'
+    ])
+    .pipe(eslint(require('./.eslintrc.json')))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+})
+
+gulp.task('tests', () => {
   gulp.watch([
     './controllers/**',
     './test/**'
-    ],
-    ['runTests']);
+  ], ['testControllers', 'lintTests','lintControllers']);
 })

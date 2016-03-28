@@ -11,13 +11,12 @@ exports.Wave = function(opt) {
     opt.freq1 = opt.freq1 || 4;
     opt.freq2 = opt.freq2 || 5;
     opt.interval = opt.interval || 0.0002;
-    opt.time = opt.time || 0.02
+    opt.time = opt.time || 0.02;
         //Save options
     this.data = opt;
 
     //These two are not being passed in options currently
     this.data.phi1 = this.data.phi2 = 0;
-
     this.update = (opt) => {
         opt = opt || {};
         opt.amp1 = opt.amp1 || this.data.amp1;
@@ -29,7 +28,7 @@ exports.Wave = function(opt) {
         opt.phi1 = opt.phi1 || this.data.phi1;
         opt.phi2 = opt.phi2 || this.data.phi2;
         this.data = opt;
-    }
+    };
 
     this.calculateGraph = (opt) => {
         opt = opt || {};
@@ -61,12 +60,12 @@ exports.Wave = function(opt) {
         }
 
         return waveData;
-    }
+    };
 
 
     return this;
 
-}
+};
 /**
  * controllers/waves6.js
  */
@@ -80,7 +79,7 @@ exports.Wave = function(opt) {
     opt.freq1 = opt.freq1 || 4;
     opt.freq2 = opt.freq2 || 5;
     opt.interval = opt.interval || 0.0002;
-    opt.time = opt.time || 0.02
+    opt.time = opt.time || 0.02;
         //Save options
     this.data = opt;
 
@@ -98,7 +97,7 @@ exports.Wave = function(opt) {
         opt.phi1 = opt.phi1 || this.data.phi1;
         opt.phi2 = opt.phi2 || this.data.phi2;
         this.data = opt;
-    }
+    };
 
     this.calculateGraph = (opt) => {
         opt = opt || {};
@@ -130,9 +129,6 @@ exports.Wave = function(opt) {
         }
 
         return waveData;
-    }
-
-
+    };
     return this;
-
-}
+};

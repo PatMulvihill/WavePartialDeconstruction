@@ -47,4 +47,4 @@ There are a bunch of gulp tasks configured to make developing React out of the c
 
 
 ###Style Guide
-To build new tests, naming convention is to add -spec to the end of the file name. Use `gulp watchForTests` to automate the running of tests whenever a file changes in the test or controllers directories.
+To build new tests, naming convention is to add -spec to the end of the file name. Use `gulp tests` to automate the running of tests whenever a file changes in the test or controllers directories.
