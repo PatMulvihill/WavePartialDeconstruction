@@ -45,4 +45,4 @@ exports.createGraphData = function(d) {
     }
 
     return data;
-};
+}

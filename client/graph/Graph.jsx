@@ -22,24 +22,22 @@ class Graph extends React.Component {
   render() {
     var fields = [{
       key: 'amp1',
-      name: 'Amplitude 1'
+      name: 'Amplitude 1 (Green)'
     }, {
       key: 'freq1',
-      name: 'Frequency 1'
+      name: 'Frequency 1 (Green)'
     }, {
       key: 'amp2',
-      name: 'Amplitude 2'
+      name: 'Amplitude 2 (Blue)'
     }, {
       key: 'freq2',
-      name: 'Frequency 2'
+      name: 'Frequency 2 (Blue)'
     }];
 
     return (
       <div>
         <InputForm fields={fields} onInputChange={this.handleStateChange}/>
         <GraphSVG wave={this.wave} />
-        {JSON.stringify(this.state)}<br />
-         {JSON.stringify(this.wave)}
       </div>
     );
   }
