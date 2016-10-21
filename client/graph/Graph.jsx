@@ -22,16 +22,16 @@ class Graph extends React.Component {
   render() {
     var fields = [{
       key: 'amp1',
-      name: 'Amplitude 1 (Green)'
+      name: 'Green Amplitude (-15 < x < 15)'
     }, {
       key: 'freq1',
-      name: 'Frequency 1 (Green)'
+      name: 'Green Frequency (x > 20)'
     }, {
       key: 'amp2',
-      name: 'Amplitude 2 (Blue)'
+      name: 'Blue Amplitude (-15 < x < 15)'
     }, {
       key: 'freq2',
-      name: 'Frequency 2 (Blue)'
+      name: 'Blue frequency (x > 20)'
     }];
 
     return (
